@@ -38,7 +38,7 @@ body {
 }
 .--mm-mainCanvas.--mm-editMode .--mm-widget {
   cursor: move;
-  /* box-shadow: 0 0 5rem 1rem rgba(0, 0, 0, 0.4); */
+  /* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
 }
 .--mm-mainCanvas.--mm-editMode .--mm-widget:hover {
   outline-color: white;
@@ -66,17 +66,17 @@ body {
   transition: background-color 300ms ease,-webkit-transform 300ms ease;
   transition: transform 300ms ease,background-color 300ms ease;
   transition: transform 300ms ease,background-color 300ms ease,-webkit-transform 300ms ease;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0);
   background-image: url("img/ui_add.svg");
   background-size: contain;
 }
 .--mm-mainCanvas .--mm-editButton:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .--mm-mainCanvas .--mm-widget {
   position: absolute;
-  outline: 0.2rem solid rgba(255, 255, 255, 0);
-  /* background-color: rgba(255, 255, 255, 0.1); */
+  outline: 0.2rem solid rgba(0, 0, 0, 0);
+  /* background-color: rgba(white, 0.1); */
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-transform: scale(1);
@@ -87,7 +87,7 @@ body {
   transition: transform 100ms ease, outline 200ms ease, box-shadow 500ms ease 100ms, -webkit-transform 100ms ease, -webkit-box-shadow 500ms ease 100ms;
   -webkit-perspective: 50rem;
           perspective: 50rem;
-  /* box-shadow: 0 0 5rem 1rem rgba(0, 0, 0, 0); */
+  /* box-shadow: 0 0 5rem 1rem rgba(black, 0); */
 }
 .--mm-mainCanvas .--mm-widget > .--mm-widget-front,
 .--mm-mainCanvas .--mm-widget > .--mm-widget-back {
@@ -146,7 +146,7 @@ body {
   transition: opacity 200ms ease, -webkit-transform 200ms ease;
   transition: transform 200ms ease, opacity 200ms ease;
   transition: transform 200ms ease, opacity 200ms ease, -webkit-transform 200ms ease;
-  /* background-color: rgba(0,0,0,1); */
+  /* background-color: rgba(white,1); */
   background-image: url("img/ui_settings.svg");
   background-size: contain;
   z-index: 10;
@@ -186,7 +186,7 @@ body {
           box-sizing: border-box;
   text-overflow: ellipsis;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   z-index: 10;
   opacity: 0;
 }
