@@ -1,18 +1,18 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
 	var widget1 = new ClockWidget();
-	widget1.setHeight(5);
+	widget1.setHeight(7);
 	widget1.setWidth(10);
 	canvas.addWidget(widget1);
 
 
 	var widget2 = new Widget();
-	widget2.setHeight(3);
+	widget2.setHeight(11);
 	canvas.addWidget(widget2);
 
 	var widget3 = new Widget();
-	widget3.setHeight(11);
-	widget3.setWidth(11);
+	widget3.setHeight(20);
+	widget3.setWidth(30);
 	canvas.addWidget(widget3);
 });
 
@@ -37,7 +37,7 @@ MainCanvas.prototype = {
 				  click: $.proxy(this.toggleEditMode, this)
 				})
 		  .appendTo( this.domRef );
-			},
+	},
 	setEditMode:function(){
 		this.editMode = true;
 		this.domRef.addClass("--mm-editMode");
@@ -89,40 +89,31 @@ MainCanvas.prototype = {
 	}
 }
 
+
 function Widget(){
-	this.domRef = $( "<div/>", {
-				class: "--mm-widget"
-			});
-
-	this.frontSideRef = $("<div/>", {
-				class: "--mm-widget-front",
-				text: "front"
-			});
-
-	this.backSideRef = $("<div/>", {
-						class: "--mm-widget-back",
-						text:"back"
-					});
-	this.domRef.append(this.frontSideRef).append(this.backSideRef);
-	this._initializeSettingsButton();
+	this._build();
 	this.setHeight(10);
 	this.setWidth(10);
 }
 Widget.prototype = {
-	width:0,
-	height:0,
-	domRef:null,
-	frontVisible:true,
-	settingsButton:null,
+	widgetName:"Standard Widget",
+	width:0, //Breite des Widgets in rem
+	height:0, //Höhe des Widgets in rem
+	domRef:null, //jQuery-Objekt des DOM-Objekts
+	frontVisible:true, //zeigt an, ob Widget nach vorne geflipped ist
+	settingsButton:null, //jQuery-Objekt des Einstellungs-Buttons
+	nameTag:null,
 	parentCanvas:null,
 	frontSideRef:null,
 	backSideRef:null,
-
+	settings:{},
 	setHeight:function(height){
 		this.domRef.height(height + "rem");
+		this.setSetting("height", height);
 	},
 	setWidth:function(width){
 		this.domRef.width(width + "rem");
+		this.setSetting("width", width);
 	},
 	flipToFront:function(){
 		this.domRef.removeClass("--mm-widget-flipped");
@@ -140,23 +131,75 @@ Widget.prototype = {
 	addToCanvas:function(canvas){
 		canvas.addWidget(this);
 	},
+	setSetting(key,value){
+		this.settings[key] = value;
+	},
 	_initializeSettingsButton:function(){
 		this.domRef.append($("<div/>", {
 					class: "--mm-widget-settingsButton --mm-visible",
 					click: $.proxy(this.toggleFlip, this)
 				}));
-	}
+	},
+	_initializeNameTag:function(){
+		this.nameTag = $( "<div/>", {
+					class: "--mm-widget-nameTag",
+					text: this.widgetName
+				});
+		this.frontSideRef.append(this.nameTag)
+	},
+	_buildFrontSide:function(){
+		this.frontSideRef = $("<div/>", {
+					class: "--mm-widget-front",
+					text: "front"
+			});
+		this.domRef.append(this.frontSideRef)
+	},
+	_buildBackSide:function(){
+		this.backSideRef = $("<div/>", {
+							class: "--mm-widget-back",
+							text:"Settings"
+						});
+		this.domRef.append(this.backSideRef);
+	},
+	_build:function(){
+		this.domRef = $( "<div/>", {
+					class: "--mm-widget"
+				});
 
+		this._buildFrontSide();
+		this._buildBackSide();
+
+		this._initializeNameTag();
+		this._initializeSettingsButton();
+	}
 }
 
 
 
 
-
+//ClockWidget erbt von Widget
 function ClockWidget(){
 	Widget.call(this);
-
 }
-
  ClockWidget.prototype = Object.create(Widget.prototype);
  ClockWidget.prototype.constructor = ClockWidget;
+ ClockWidget.prototype.widgetName = "Clock";
+
+ ClockWidget.prototype._buildFrontSide = function(){
+	 this.frontSideRef = $("<div/>", {
+				 class: "--mm-widget-front",
+				 // text: "front2"
+		 });
+
+	 this.domRef.append(this.frontSideRef)
+
+	 this.hoursContainer = $("<span/>", {
+				 class: "--mm-clockWidget-hours",
+				 text: "12"
+		 }).appendTo(this.frontSideRef);
+
+		 this.minutesContainer = $("<span/>", {
+					 class: "--mm-clockWidget-minutes",
+					 text: "45"
+			 }).appendTo(this.frontSideRef);
+ }
