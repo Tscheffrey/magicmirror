@@ -1,0 +1,24 @@
+
+
+html {
+  font-size: 62.5%;
+  font-size: 100%;
+}
+
+body{
+	/* background-color: black; */
+	margin: 0;
+	padding:0;
+}
+
+#magicMirror{
+	height: 100vh;
+	position: fixed;
+	width: 100%;
+	top:0;
+	left:0;
+	box-sizing: border-box;
+	/* padding:5rem; */
+}
+
+@import 'magicMirror';
