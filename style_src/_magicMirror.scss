@@ -8,23 +8,6 @@ $prefix: '.--mm-';
 	color: white;
 	font-family: 'Roboto', sans-serif;
 	transition: background-color 500ms ease;
-	&.--mm-editMode{
-		background-color: #3e3e3e;
-		.--mm-editButton{
-			transform: rotate(45deg);
-		}
-		.--mm-widget{
-			cursor: move;
-			/* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
-			&:hover{
-				outline-color: rgba(white,1);
-			}
-			&:active{
-				/* transform: scale(1.1); */
-			}
-		}
-
-	}
  .--mm-editButton{
 		display: block;
 		position: absolute;
@@ -109,16 +92,7 @@ $prefix: '.--mm-';
 			pointer-events: none;
 			transform: scale(0.1);
 		}
-		&:hover{
-			.--mm-widget-settingsButton.--mm-visible{
-				opacity: 1;
-				pointer-events: auto;
-				transform: scale(1);
-			}
-			.--mm-widget-nameTag{
-				opacity: 1;
-			}
-		}
+
 		.--mm-widget-nameTag{
 			display: block;
 			position: absolute;
@@ -139,6 +113,31 @@ $prefix: '.--mm-';
 			background-color: rgba(black,0.5);
 			z-index: 10;
 			opacity: 0;
+		}
+	}
+
+	&.--mm-editMode{
+		background-color: #3e3e3e;
+		.--mm-editButton{
+			transform: rotate(45deg);
+		}
+		.--mm-widget{
+			cursor: move;
+			/* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
+			&:hover{
+				outline-color: rgba(white,1);
+				.--mm-widget-settingsButton.--mm-visible{
+					opacity: 1;
+					pointer-events: auto;
+					transform: scale(1);
+				}
+				.--mm-widget-nameTag{
+					opacity: 1;
+				}
+			}
+			&:active{
+				/* transform: scale(1.1); */
+			}
 		}
 	}
 }

@@ -29,23 +29,6 @@ body {
   -webkit-transition: background-color 500ms ease;
   transition: background-color 500ms ease;
 }
-.--mm-mainCanvas.--mm-editMode {
-  background-color: #3e3e3e;
-}
-.--mm-mainCanvas.--mm-editMode .--mm-editButton {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-.--mm-mainCanvas.--mm-editMode .--mm-widget {
-  cursor: move;
-  /* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
-}
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover {
-  outline-color: white;
-}
-.--mm-mainCanvas.--mm-editMode .--mm-widget:active {
-  /* transform: scale(1.1); */
-}
 .--mm-mainCanvas .--mm-editButton {
   display: block;
   position: absolute;
@@ -155,15 +138,6 @@ body {
   -webkit-transform: scale(0.1);
           transform: scale(0.1);
 }
-.--mm-mainCanvas .--mm-widget:hover .--mm-widget-settingsButton.--mm-visible {
-  opacity: 1;
-  pointer-events: auto;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-.--mm-mainCanvas .--mm-widget:hover .--mm-widget-nameTag {
-  opacity: 1;
-}
 .--mm-mainCanvas .--mm-widget .--mm-widget-nameTag {
   display: block;
   position: absolute;
@@ -189,4 +163,30 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   opacity: 0;
+}
+.--mm-mainCanvas.--mm-editMode {
+  background-color: #3e3e3e;
+}
+.--mm-mainCanvas.--mm-editMode .--mm-editButton {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget {
+  cursor: move;
+  /* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover {
+  outline-color: white;
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-settingsButton.--mm-visible {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-nameTag {
+  opacity: 1;
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:active {
+  /* transform: scale(1.1); */
 }
