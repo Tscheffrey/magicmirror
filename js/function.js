@@ -28,7 +28,7 @@ function MainCanvas(domReference){
 	console.log("MainCanvas initialized");
 }
 MainCanvas.prototype = {
-	domRef:null,
+	domRef:undefined,
 	widgets:[],
 	// visible:false,
 	initializeEditButton:function(){
@@ -99,13 +99,13 @@ Widget.prototype = {
 	widgetName:"Standard Widget",
 	width:0, //Breite des Widgets in rem
 	height:0, //Höhe des Widgets in rem
-	domRef:null, //jQuery-Objekt des DOM-Objekts
+	domRef:undefined, //jQuery-Objekt des DOM-Objekts
 	frontVisible:true, //zeigt an, ob Widget nach vorne geflipped ist
-	settingsButton:null, //jQuery-Objekt des Einstellungs-Buttons
-	nameTag:null,
-	parentCanvas:null,
-	frontSideRef:null,
-	backSideRef:null,
+	settingsButton:undefined, //jQuery-Objekt des Einstellungs-Buttons
+	nameTag:undefined,
+	parentCanvas:undefined,
+	frontSideRef:undefined,
+	backSideRef:undefined,
 	settings:{},
 	setHeight:function(height){
 		this.domRef.height(height + "rem");

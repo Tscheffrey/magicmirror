@@ -66,12 +66,12 @@ body {
   transition: background-color 300ms ease,-webkit-transform 300ms ease;
   transition: transform 300ms ease,background-color 300ms ease;
   transition: transform 300ms ease,background-color 300ms ease,-webkit-transform 300ms ease;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
   background-image: url("img/ui_add.svg");
   background-size: contain;
 }
 .--mm-mainCanvas .--mm-editButton:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .--mm-mainCanvas .--mm-widget {
   position: absolute;
@@ -186,7 +186,7 @@ body {
           box-sizing: border-box;
   text-overflow: ellipsis;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   opacity: 0;
 }

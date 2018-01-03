@@ -39,11 +39,12 @@ $prefix: '.--mm-';
 		transform: rotate(0deg);
 		transition: transform 300ms ease,background-color 300ms ease;
 
-		background-color: rgba(black,0);
+		background-color: rgba(white,0);
 		background-image: url("img/ui_add.svg");
 		background-size: contain;
+
 		&:hover{
-			background-color: rgba(black,0.3);
+			background-color: rgba(white,0.3);
 		}
 	}
 
@@ -135,7 +136,7 @@ $prefix: '.--mm-';
 			box-sizing: border-box;
 			text-overflow: ellipsis;
 			overflow: hidden;
-			background-color: rgba(white,0.5);
+			background-color: rgba(black,0.5);
 			z-index: 10;
 			opacity: 0;
 		}
