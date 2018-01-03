@@ -1,6 +1,6 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
-	var widget1 = new ClockWidget();
+	var widget1 = new ClockWidget({showSeconds:true, hoursLeadingZero:false});
 	widget1.setHeight(7);
 	widget1.setWidth(10);
 	canvas.addWidget(widget1);
@@ -8,12 +8,12 @@ $(function(){
 
 	var widget2 = new Widget();
 	widget2.setHeight(11);
-	canvas.addWidget(widget2);
+	// canvas.addWidget(widget2);
 
 	var widget3 = new Widget();
 	widget3.setHeight(20);
 	widget3.setWidth(30);
-	canvas.addWidget(widget3);
+	// canvas.addWidget(widget3);
 });
 
 
@@ -90,7 +90,8 @@ MainCanvas.prototype = {
 }
 
 
-function Widget(){
+function Widget(options){
+	this._readOptions(options)
 	this._build();
 	this.setHeight(10);
 	this.setWidth(10);
@@ -131,8 +132,11 @@ Widget.prototype = {
 	addToCanvas:function(canvas){
 		canvas.addWidget(this);
 	},
-	setSetting(key,value){
+	setSetting:function(key,value){
 		this.settings[key] = value;
+	},
+	_readOptions:function(options){
+		if(true);
 	},
 	_initializeSettingsButton:function(){
 		this.domRef.append($("<div/>", {
@@ -178,18 +182,34 @@ Widget.prototype = {
 
 
 //ClockWidget erbt von Widget
-function ClockWidget(){
-	Widget.call(this);
-	this.setClockTime({hours:12, minutes:45});
+function ClockWidget(options){
+	Widget.call(this, options);
+	// this.setClockTime({hours:12, minutes:45});
+	this._tick(true);
 }
 ClockWidget.prototype = Object.create(Widget.prototype);
 Object.assign(ClockWidget.prototype,{
+	showSeconds:false,
+	hoursLeadingZero:false,
 	constructor: ClockWidget,
 	widgetName: "Clock",
 	time: {hours: undefined, minutes: undefined, seconds: undefined},
 	setClockTime:function(args){
-		if(args.hours && args.hours != this.time.hours) this.frontSideRef.children(".--mm-clockWidget-hours").text(args.hours.toString());
-		if(args.minutes && args.minutes != this.time.minutes) this.frontSideRef.children(".--mm-clockWidget-minutes").text(args.minutes.toString());
+		this.time = args;
+		// if((args.hours) && args.hours != this.time.hours) this.frontSideRef.children(".--mm-clockWidget-hours").text(args.hours.toString());
+		// if(args.minutes && args.minutes != this.time.minutes) this.frontSideRef.children(".--mm-clockWidget-minutes").text(args.minutes.toString());
+		// if(args.seconds && args.seconds != this.time.seconds) this.frontSideRef.children(".--mm-clockWidget-seconds").text(args.seconds.toString());
+
+		this.frontSideRef.children(".--mm-clockWidget-hours").text(this._getHoursFormatted());
+		this.frontSideRef.children(".--mm-clockWidget-minutes").text(this._getMinutesFormatted());
+		this.frontSideRef.children(".--mm-clockWidget-seconds").text(this._getSecondsFormatted());
+
+	},
+	_readOptions(options){
+		if(options){
+			this.showSeconds = !!options.showSeconds;
+			this.hoursLeadingZero = !!options.hoursLeadingZero;
+		}
 	},
 	_buildFrontSide: function(){
 		this.frontSideRef = $("<div/>", {
@@ -199,14 +219,53 @@ Object.assign(ClockWidget.prototype,{
 
 		this.domRef.append(this.frontSideRef);
 
-		this.hoursContainer = $("<span/>", {
+		$("<span/>", {
 					class: "--mm-clockWidget-hours",
 					// text: "--"
 			}).appendTo(this.frontSideRef);
 
-			this.minutesContainer = $("<span/>", {
-						class: "--mm-clockWidget-minutes",
+		$("<span/>", {
+					class: "--mm-clockWidget-minutes",
+					// text: "--"
+			}).appendTo(this.frontSideRef);
+
+		if(this.showSeconds){
+			$("<span/>", {
+						class: "--mm-clockWidget-seconds",
 						// text: "--"
 				}).appendTo(this.frontSideRef);
+		}
+	},
+	_tick:function(isFirstTick){
+		var date = new Date();
+		var time = {};
+		time.hours = date.getHours();
+		time.minutes = date.getMinutes();
+		time.seconds = date.getSeconds();
+		this.setClockTime(time);
+		var milToNextTick = 1000;
+		if(isFirstTick) milToNextTick = this._getMillisecondsToNextSecond(date);
+		setTimeout($.proxy(this._tick, this), milToNextTick);
+	},
+	_getMillisecondsToNextSecond:function(date){
+		return date.getMilliseconds();
+	},
+	_getHoursFormatted:function(){
+		if(this.hoursLeadingZero) return this._convertToTwoDigitNumber(this.time.hours);
+		else return this.time.hours.toString();
+	},
+	_getMinutesFormatted:function(){
+		return this._convertToTwoDigitNumber(this.time.minutes);
+	},
+	_getSecondsFormatted:function(){
+		return this._convertToTwoDigitNumber(this.time.seconds);
+	},
+	_convertToTwoDigitNumber:function(number){
+		number = number.toString();
+		if(number.length == 1) number = "0" + number;
+		return number;
 	}
+
+
+
 });
