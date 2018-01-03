@@ -180,10 +180,12 @@ Widget.prototype = {
 //ClockWidget erbt von Widget
 function ClockWidget(){
 	Widget.call(this);
+	this.setClockTime({hours:12, minutes:45});
 }
  ClockWidget.prototype = Object.create(Widget.prototype);
  ClockWidget.prototype.constructor = ClockWidget;
  ClockWidget.prototype.widgetName = "Clock";
+ ClockWidget.prototype.time = {hours: undefined, minutes: undefined, seconds: undefined};
 
  ClockWidget.prototype._buildFrontSide = function(){
 	 this.frontSideRef = $("<div/>", {
@@ -191,15 +193,19 @@ function ClockWidget(){
 				 // text: "front2"
 		 });
 
-	 this.domRef.append(this.frontSideRef)
+	 this.domRef.append(this.frontSideRef);
 
 	 this.hoursContainer = $("<span/>", {
 				 class: "--mm-clockWidget-hours",
-				 text: "12"
+				 // text: "--"
 		 }).appendTo(this.frontSideRef);
 
 		 this.minutesContainer = $("<span/>", {
 					 class: "--mm-clockWidget-minutes",
-					 text: "45"
+					 // text: "--"
 			 }).appendTo(this.frontSideRef);
+ }
+ ClockWidget.prototype.setClockTime = function(args){
+	 if(args.hours && args.hours != this.time.hours) this.frontSideRef.children(".--mm-clockWidget-hours").text(args.hours.toString());
+	 if(args.minutes && args.minutes != this.time.minutes) this.frontSideRef.children(".--mm-clockWidget-minutes").text(args.minutes.toString());
  }
