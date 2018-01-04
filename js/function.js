@@ -184,6 +184,7 @@ Widget.prototype = {
 //ClockWidget erbt von Widget
 function ClockWidget(options){
 	Widget.call(this, options);
+	this.domRef.addClass("--mm-clockWidget");
 	// this.setClockTime({hours:12, minutes:45});
 	this._tick(true);
 }

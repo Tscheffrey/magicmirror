@@ -190,3 +190,6 @@ body {
 .--mm-mainCanvas.--mm-editMode .--mm-widget:active {
   /* transform: scale(1.1); */
 }
+.--mm-mainCanvas.--mm-editMode.--mm-clockWidget .--mm-widget-front {
+  font-size: 20rem;
+}

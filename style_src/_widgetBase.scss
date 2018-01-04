@@ -1,0 +1,111 @@
+.--mm-widget{
+	position: absolute;
+	outline: 0.2rem solid rgba(black,0);
+	/* background-color: rgba(white, 0.1); */
+	box-sizing: border-box;
+	transform: scale(1);
+	transition: transform 100ms ease, outline 200ms ease, box-shadow 500ms ease 100ms;
+	perspective: 50rem;
+	/* box-shadow: 0 0 5rem 1rem rgba(black, 0); */
+	> .--mm-widget-front,
+	> .--mm-widget-back {
+		position: absolute;
+		top: 0;
+		left: 0;
+		backface-visibility: hidden;
+		transition: transform 500ms ease;
+		height: 100%;
+		width:100%;
+		padding: 0.5rem;
+		box-sizing: border-box;
+	}
+	> .--mm-widget-front {
+		z-index: 2;
+		transform: rotateY(0deg);
+		/* background: red; */
+	}
+	> .--mm-widget-back {
+		z-index: 3;
+		transform: rotateY(180deg);
+		background: #121212;
+	}
+	&.--mm-widget-flipped{
+		> .--mm-widget-front {
+			transform: rotateY(-180deg);
+		}
+		> .--mm-widget-back {
+			transform: rotateY(0deg);
+		}
+	}
+	.--mm-widget-settingsButton{
+		display: block;
+		position: absolute;
+		bottom: 0.3rem;
+		right: 0.3rem;
+		height: 2rem;
+		width: 2rem;
+		user-select: none;
+		border-radius: 50%;
+		overflow: hidden;
+		cursor: pointer;
+		transform: rotate(0deg);
+		transition: transform 200ms ease, opacity 200ms ease;
+
+		/* background-color: rgba(white,1); */
+		background-image: url("img/ui_settings.svg");
+		background-size: contain;
+		z-index: 10;
+		opacity: 0;
+		pointer-events: none;
+		transform: scale(0.1);
+	}
+
+	.--mm-widget-nameTag{
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		user-select: none;
+		transition: opacity 400ms ease;
+		pointer-events: none;
+		user-select: none;
+		padding: 0.3rem 0.7rem;
+		text-transform: uppercase;
+		font-weight: bold;
+		max-width: 100%;
+		max-height: 100%;
+		box-sizing: border-box;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		background-color: rgba(black,0.5);
+		z-index: 10;
+		opacity: 0;
+	}
+}
+
+&.--mm-editMode{
+	background-color: #3e3e3e;
+	.--mm-editButton{
+		transform: rotate(45deg);
+	}
+	.--mm-widget{
+		cursor: move;
+		/* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
+		&:hover{
+			outline-color: rgba(white,1);
+			.--mm-widget-settingsButton.--mm-visible{
+				opacity: 1;
+				pointer-events: auto;
+				transform: scale(1);
+			}
+			.--mm-widget-nameTag{
+				opacity: 1;
+			}
+		}
+		&:active{
+			/* transform: scale(1.1); */
+		}
+
+	}
+	@import 'clockWidget';
+}
