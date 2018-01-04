@@ -26,7 +26,8 @@ body {
 }
 
 .--mm-mainCanvas {
-  background-color: #121212;
+  background-color: black;
+  z-index: 0;
   color: white;
   -webkit-transition: background-color 500ms ease;
   transition: background-color 500ms ease;
@@ -140,10 +141,10 @@ body {
 .--mm-mainCanvas .--mm-widget .--mm-widget-settingsButton {
   display: block;
   position: absolute;
-  bottom: 0.3rem;
-  right: 0.3rem;
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  bottom: 0.45rem;
+  right: 0.45rem;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -202,17 +203,20 @@ body {
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-hours,
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes,
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
+  position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   dispay: block;
-  text-align: middle;
+  margin: 0;
+  padding: 0;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes {
-  font-size: 0.66em;
-  padding-bottom: 0.33em;
+  font-size: .66em;
+  top: -0.34em;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
-  font-size: 0.33em;
+  font-size: .33em;
+  top: -1.33em;
 }

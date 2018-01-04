@@ -8,20 +8,25 @@
 		.--mm-clockWidget-hours,
 		.--mm-clockWidget-minutes,
 		.--mm-clockWidget-seconds{
+			position: relative;
 			user-select: none;
-			dispay:block;
-			text-align: middle;
+			dispay: block;
+			// text-align: center;
+			// vertical-align: middle;
+			margin: 0;
+			padding:0;
 		}
 
 		.--mm-clockWidget-hours{
 
 		}
 		.--mm-clockWidget-minutes{
-			font-size: 0.66em;
-			padding-bottom: 0.33em;
+			font-size: .66em;
+			top: 0.66em - 1em;
 		}
 		.--mm-clockWidget-seconds{
-			font-size: 0.33em;
+			font-size: .33em;
+			top: - 1.33em;
 		}
 	}
 

@@ -16,10 +16,29 @@ body{
 }
 
 .--mm-mainCanvas{
-	background-color: #121212;
+	// background-color: #121212;
+	background-color: rgba(black,1);
+	z-index:0;
 	color: white;
 	// font-family: $base-font;
 	transition: background-color 500ms ease;
+	// position: absolute;
+	// &::before{
+	// 	content: "";
+	// 	background-image: url("img/ui_bg.svg");
+	// 	background-size:cover;
+	// 	background-position: center;
+	// 	height:100%;
+	// 	width:100%;
+	// 	top: 0;
+	// 	left: 0;
+	// 	bottom: 0;
+	// 	right: 0;
+	// 	position: absolute;
+	// 	// z-index: -1;
+	// 	opacity: 1;
+	// 	transition: opacity 500ms ease;
+	// }
  .--mm-editButton{
 		display: block;
 		position: absolute;
@@ -45,6 +64,10 @@ body{
 
 	&.--mm-editMode{
 		background-color: #3e3e3e;
+		// background-color: rgba(black,0);
+		// ::before{
+		// 	opacity: 0;
+		// }
 		.--mm-editButton{
 			transform: rotate(45deg);
 		}

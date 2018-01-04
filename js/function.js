@@ -1,8 +1,8 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
 	var widget1 = new ClockWidget({showSeconds:true, hoursLeadingZero:false});
-	widget1.setHeight(20);
-	widget1.setWidth(35);
+	widget1.setHeight(30);
+	widget1.setWidth(60);
 	canvas.addWidget(widget1);
 	canvas.setEditMode();
 
@@ -151,14 +151,15 @@ Widget.prototype = {
 					class: "--mm-widget-nameTag",
 					text: this.widgetName
 				});
-		this.frontSideRef.append(this.nameTag)
+		this.frontSideRef.append(this.nameTag);
+		// this.domRef.append(this.nameTag);
 	},
 	_buildFrontSide:function(){
 		this.frontSideRef = $("<div/>", {
 					class: "--mm-widget-front",
 					text: "front"
 			});
-		this.domRef.append(this.frontSideRef)
+		this.domRef.append(this.frontSideRef);
 	},
 	_buildBackSide:function(){
 		this.backSideRef = $("<div/>", {
