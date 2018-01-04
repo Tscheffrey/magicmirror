@@ -1,9 +1,10 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
 	var widget1 = new ClockWidget({showSeconds:true, hoursLeadingZero:false});
-	widget1.setHeight(7);
-	widget1.setWidth(10);
+	widget1.setHeight(20);
+	widget1.setWidth(35);
 	canvas.addWidget(widget1);
+	canvas.setEditMode();
 
 
 	var widget2 = new Widget();
@@ -30,7 +31,7 @@ function MainCanvas(domReference){
 MainCanvas.prototype = {
 	domRef:undefined,
 	widgets:[],
-	
+
 	// visible:false,
 	initializeEditButton:function(){
 		$( "<div/>", {
@@ -195,6 +196,7 @@ Object.assign(ClockWidget.prototype,{
 	hoursLeadingZero:false,
 	constructor: ClockWidget,
 	widgetName: "Clock",
+	currentTimer: undefined,
 	time: {hours: undefined, minutes: undefined, seconds: undefined},
 	setClockTime:function(args){
 		this.time = args;
@@ -247,7 +249,7 @@ Object.assign(ClockWidget.prototype,{
 		this.setClockTime(time);
 		var milToNextTick = 1000;
 		if(isFirstTick) milToNextTick = this._getMillisecondsToNextSecond(date);
-		setTimeout($.proxy(this._tick, this), milToNextTick);
+		this.currentTimer = setTimeout($.proxy(this._tick, this), milToNextTick);
 	},
 	_getMillisecondsToNextSecond:function(date){
 		return date.getMilliseconds();

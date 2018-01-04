@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Advent+Pro");
 html {
   font-size: 62.5%;
-  font-size: 100%;
 }
 
 body {
-  /* background-color: black; */
+  font-size: 1.6rem;
   margin: 0;
   padding: 0;
 }
@@ -22,10 +21,13 @@ body {
 }
 
 /* Fonts importieren */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .--mm-mainCanvas {
   background-color: #121212;
   color: white;
-  font-family: 'Roboto', sans-serif;
   -webkit-transition: background-color 500ms ease;
   transition: background-color 500ms ease;
 }
@@ -34,8 +36,8 @@ body {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  height: 3rem;
-  width: 3rem;
+  height: 6rem;
+  width: 6rem;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -55,6 +57,32 @@ body {
 }
 .--mm-mainCanvas .--mm-editButton:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+.--mm-mainCanvas.--mm-editMode {
+  background-color: #3e3e3e;
+}
+.--mm-mainCanvas.--mm-editMode .--mm-editButton {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget {
+  cursor: move;
+  /* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover {
+  outline-color: white;
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover:not(.mm-widget-flipped) .--mm-widget-settingsButton.--mm-visible {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-nameTag {
+  opacity: 1;
+}
+.--mm-mainCanvas.--mm-editMode .--mm-widget:active {
+  /* transform: scale(1.1); */
 }
 .--mm-mainCanvas .--mm-widget {
   position: absolute;
@@ -114,8 +142,8 @@ body {
   position: absolute;
   bottom: 0.3rem;
   right: 0.3rem;
-  height: 2rem;
-  width: 2rem;
+  height: 3.5rem;
+  width: 3.5rem;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -139,6 +167,7 @@ body {
           transform: scale(0.1);
 }
 .--mm-mainCanvas .--mm-widget .--mm-widget-nameTag {
+  font-family: 'Roboto', sans-serif;
   display: block;
   position: absolute;
   top: 0;
@@ -151,8 +180,7 @@ body {
   transition: opacity 400ms ease;
   pointer-events: none;
   user-select: none;
-  padding: 0.3rem 0.7rem;
-  text-transform: uppercase;
+  padding: 0.5rem 1rem;
   font-weight: bold;
   max-width: 100%;
   max-height: 100%;
@@ -163,33 +191,28 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
   opacity: 0;
+  font-size: 2rem;
 }
-.--mm-mainCanvas.--mm-editMode {
-  background-color: #3e3e3e;
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front {
+  font-family: 'Advent Pro', sans-serif;
+  font-weight: 300;
+  font-size: 15rem;
+  text-align: center;
 }
-.--mm-mainCanvas.--mm-editMode .--mm-editButton {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-hours,
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes,
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  dispay: block;
+  text-align: middle;
 }
-.--mm-mainCanvas.--mm-editMode .--mm-widget {
-  cursor: move;
-  /* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes {
+  font-size: 0.66em;
+  padding-bottom: 0.33em;
 }
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover {
-  outline-color: white;
-}
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-settingsButton.--mm-visible {
-  opacity: 1;
-  pointer-events: auto;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-nameTag {
-  opacity: 1;
-}
-.--mm-mainCanvas.--mm-editMode .--mm-widget:active {
-  /* transform: scale(1.1); */
-}
-.--mm-mainCanvas.--mm-editMode.--mm-clockWidget .--mm-widget-front {
-  font-size: 20rem;
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
+  font-size: 0.33em;
 }
