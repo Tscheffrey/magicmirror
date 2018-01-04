@@ -30,6 +30,7 @@ function MainCanvas(domReference){
 MainCanvas.prototype = {
 	domRef:undefined,
 	widgets:[],
+	
 	// visible:false,
 	initializeEditButton:function(){
 		$( "<div/>", {
