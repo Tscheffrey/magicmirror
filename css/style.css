@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Advent+Pro");
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Advent+Pro|Montserrat");
 html {
   font-size: 62.5%;
 }
@@ -22,7 +22,7 @@ body {
 
 /* Fonts importieren */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .--mm-mainCanvas {
@@ -168,7 +168,7 @@ body {
           transform: scale(0.1);
 }
 .--mm-mainCanvas .--mm-widget .--mm-widget-nameTag {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   display: block;
   position: absolute;
   top: 0;
@@ -181,8 +181,9 @@ body {
   transition: opacity 400ms ease;
   pointer-events: none;
   user-select: none;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
+  padding: 1rem 1.8rem;
+  text-transform: uppercase;
+  font-weight: 400;
   max-width: 100%;
   max-height: 100%;
   -webkit-box-sizing: border-box;
@@ -193,6 +194,7 @@ body {
   z-index: 10;
   opacity: 0;
   font-size: 2rem;
+  border-bottom-right-radius: 1rem;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front {
   font-family: 'Advent Pro', sans-serif;

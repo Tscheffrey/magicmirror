@@ -1,14 +1,13 @@
 /* Fonts importieren */
-@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Advent+Pro');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Advent+Pro|Montserrat');
 
 
 @mixin setBaseFont(){
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 
 @mixin setNumberFont(){
 	font-family: 'Advent Pro', sans-serif;
-	// font-weight: 300;
 }
 
 body{

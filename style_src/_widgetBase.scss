@@ -71,9 +71,9 @@
 		transition: opacity 400ms ease;
 		pointer-events: none;
 		user-select: none;
-		padding: 0.5rem 1rem;
-		// text-transform: uppercase;
-		font-weight: bold;
+		padding: 1rem 1.8rem;
+		text-transform: uppercase;
+		font-weight: 400;
 		max-width: 100%;
 		max-height: 100%;
 		box-sizing: border-box;
@@ -83,6 +83,7 @@
 		z-index: 10;
 		opacity: 0;
 		font-size: 2rem;
+		border-bottom-right-radius: 1rem;
 	}
 	@import 'clockWidget';
 }
