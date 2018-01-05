@@ -4,12 +4,14 @@ $(function(){
 	widget1.setHeight(30);
 	widget1.setWidth(60);
 	canvas.addWidget(widget1);
-	canvas.setEditMode();
 
 
 	var widget2 = new Widget();
-	widget2.setHeight(11);
-	// canvas.addWidget(widget2);
+	widget2.setHeight(20);
+	widget2.setWidth(20);
+	canvas.addWidget(widget2);
+
+		canvas.setEditMode();
 
 	var widget3 = new Widget();
 	widget3.setHeight(20);

@@ -216,9 +216,11 @@ body {
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes {
   font-size: .66em;
-  top: -0.34em;
+  top: -0.33em;
+  margin-left: 0.3rem;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
   font-size: .33em;
   top: -1.33em;
+  margin-left: 0.4rem;
 }
