@@ -4,9 +4,7 @@ $(function(){
 	canvas.addWidget(widget1);
 
 
-	var widget2 = new Widget();
-	widget2.setHeight(20);
-	widget2.setWidth(20);
+	// var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false});
 	// canvas.addWidget(widget2);
 
 		// canvas.setEditMode();
