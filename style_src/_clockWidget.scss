@@ -4,33 +4,38 @@
 		font-weight: 300;
 		font-size: 15rem;
 		text-align: center;
-		font-feature-settings: "tnum";
-		font-variant-numeric: tabular-nums;
+		.--mm-clockWidget-timeContainer{
+			position: absolute;
+			top:0;
+			left:0;
+			.--mm-clockWidget-hours,
+			.--mm-clockWidget-minutes,
+			.--mm-clockWidget-seconds{
+				position: relative;
+				user-select: none;
+				dispay: block;
+				// text-align: center;
+				// vertical-align: middle;
+				margin: 0;
+				padding:0;
+			}
 
-		.--mm-clockWidget-hours,
-		.--mm-clockWidget-minutes,
-		.--mm-clockWidget-seconds{
-			position: relative;
-			user-select: none;
-			dispay: block;
-			// text-align: center;
-			// vertical-align: middle;
-			margin: 0;
-			padding:0;
-		}
+			.--mm-clockWidget-hours{
 
-		.--mm-clockWidget-hours{
-
-		}
-		.--mm-clockWidget-minutes{
-			font-size: .66em;
-			top: -0.33em;
-			margin-left: 0.3rem;
-		}
-		.--mm-clockWidget-seconds{
-			font-size: .33em;
-			top: - 1.33em;
-			margin-left: 0.4rem;
+			}
+			.--mm-clockWidget-minutes{
+				font-size: .66em;
+				top: -0.33em;
+				margin-left: 0.3rem;
+			}
+			.--mm-clockWidget-seconds{
+				font-size: .33em;
+				top: - 1.33em;
+				margin-left: 0.4rem;
+			}
+			&.--mm-clockWidget-dummyContainer{
+				display: inline-block;
+			}
 		}
 	}
 

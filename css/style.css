@@ -202,9 +202,14 @@ body {
   font-size: 15rem;
   text-align: center;
 }
-.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-hours,
-.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes,
-.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-hours,
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-minutes,
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-seconds {
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -214,13 +219,16 @@ body {
   margin: 0;
   padding: 0;
 }
-.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-minutes {
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-minutes {
   font-size: .66em;
   top: -0.33em;
   margin-left: 0.3rem;
 }
-.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-seconds {
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-seconds {
   font-size: .33em;
   top: -1.33em;
   margin-left: 0.4rem;
+}
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer.--mm-clockWidget-dummyContainer {
+  display: inline-block;
 }

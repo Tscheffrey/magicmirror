@@ -9,9 +9,9 @@ $(function(){
 	var widget2 = new Widget();
 	widget2.setHeight(20);
 	widget2.setWidth(20);
-	canvas.addWidget(widget2);
+	// canvas.addWidget(widget2);
 
-		canvas.setEditMode();
+		// canvas.setEditMode();
 
 	var widget3 = new Widget();
 	widget3.setHeight(20);
@@ -33,8 +33,7 @@ function MainCanvas(domReference){
 MainCanvas.prototype = {
 	domRef:undefined,
 	widgets:[],
-
-	// visible:false,
+	isOn:true,
 	initializeEditButton:function(){
 		$( "<div/>", {
 		  		class: "--mm-editButton",
@@ -83,6 +82,13 @@ MainCanvas.prototype = {
 		for (var i in this.widgets) {
 			this.widgets[i].flipToFront();
 		}
+	},
+	turnOff:function(){
+		this.domRef.addClass("-mm-off");
+		this.unsetEditMode();
+	},
+	turnOn:function(){
+		this.domRef.removeClass("-mm-off");
 	},
 	_getWidgetDomArray:function(){
 		var result = [];
@@ -190,8 +196,8 @@ Widget.prototype = {
 function ClockWidget(options){
 	Widget.call(this, options);
 	this.domRef.addClass("--mm-clockWidget");
-	// this.setClockTime({hours:12, minutes:45});
 	this._tick(true);
+	this._calculateSize();
 }
 ClockWidget.prototype = Object.create(Widget.prototype);
 Object.assign(ClockWidget.prototype,{
@@ -207,9 +213,9 @@ Object.assign(ClockWidget.prototype,{
 		// if(args.minutes && args.minutes != this.time.minutes) this.frontSideRef.children(".--mm-clockWidget-minutes").text(args.minutes.toString());
 		// if(args.seconds && args.seconds != this.time.seconds) this.frontSideRef.children(".--mm-clockWidget-seconds").text(args.seconds.toString());
 
-		this.frontSideRef.children(".--mm-clockWidget-hours").text(this._getHoursFormatted());
-		this.frontSideRef.children(".--mm-clockWidget-minutes").text(this._getMinutesFormatted());
-		this.frontSideRef.children(".--mm-clockWidget-seconds").text(this._getSecondsFormatted());
+		this.timeContainer.children(".--mm-clockWidget-hours").text(this._getHoursFormatted());
+		this.timeContainer.children(".--mm-clockWidget-minutes").text(this._getMinutesFormatted());
+		this.timeContainer.children(".--mm-clockWidget-seconds").text(this._getSecondsFormatted());
 
 	},
 	_readOptions(options){
@@ -221,27 +227,12 @@ Object.assign(ClockWidget.prototype,{
 	_buildFrontSide: function(){
 		this.frontSideRef = $("<div/>", {
 					class: "--mm-widget-front",
-					// text: "front2"
 			});
 
 		this.domRef.append(this.frontSideRef);
 
-		$("<span/>", {
-					class: "--mm-clockWidget-hours",
-					// text: "--"
-			}).appendTo(this.frontSideRef);
-
-		$("<span/>", {
-					class: "--mm-clockWidget-minutes",
-					// text: "--"
-			}).appendTo(this.frontSideRef);
-
-		if(this.showSeconds){
-			$("<span/>", {
-						class: "--mm-clockWidget-seconds",
-						// text: "--"
-				}).appendTo(this.frontSideRef);
-		}
+		this.timeContainer = this._generateNumberInterface();
+		this.frontSideRef.append(this.timeContainer)
 	},
 	_tick:function(isFirstTick){
 		var date = new Date();
@@ -268,11 +259,46 @@ Object.assign(ClockWidget.prototype,{
 		return this._convertToTwoDigitNumber(this.time.seconds);
 	},
 	_convertToTwoDigitNumber:function(number){
-		number = number.toString();
+		var number = number.toString();
 		if(number.length == 1) number = "0" + number;
 		return number;
+	},
+	_calculateSize:function(){
+		var dummyContainer = this._generateNumberInterface(true);
+		dummyContainer.addClass("--mm-dummyContainer");
+		this.frontSideRef.append(dummyContainer);
+		var width = dummyContainer.width();
+		console.log("Width: " + width);
+		dummyContainer.remove();
+	},
+	_generateNumberInterface(addDummyValues){
+		var result = $("<span/>", {
+					class: "--mm-clockWidget-timeContainer",
+			});
+
+		var hours = $("<span/>", {
+					class: "--mm-clockWidget-hours",
+			}).appendTo(result);
+
+		var mins = $("<span/>", {
+					class: "--mm-clockWidget-minutes",
+					text: "00"
+			}).appendTo(result);
+
+			if(addDummyValues){
+				hours.text("20");
+				mins.text("00");
+			}
+
+		if(this.showSeconds){
+			var secs = $("<span/>", {
+						class: "--mm-clockWidget-seconds",
+						text: "00"
+				}).appendTo(result);
+			if(addDummyValues) secs.text("00");
+
+		}
+		return result;
 	}
-
-
 
 });
