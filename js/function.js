@@ -1,8 +1,6 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
-	var widget1 = new ClockWidget({showSeconds:true, hoursLeadingZero:false});
-	widget1.setHeight(30);
-	widget1.setWidth(60);
+	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false});
 	canvas.addWidget(widget1);
 
 
@@ -30,6 +28,14 @@ function MainCanvas(domReference){
 	}
 	console.log("MainCanvas initialized");
 }
+MainCanvas.getRemPxRatio = function(){
+	var html = document.getElementsByTagName('html')[0];
+	return parseInt(window.getComputedStyle(html)['fontSize']);
+},
+MainCanvas.pxToRem = function(px){
+			return (parseInt(px) / MainCanvas.getRemPxRatio());
+}
+
 MainCanvas.prototype = {
 	domRef:undefined,
 	widgets:[],
@@ -264,12 +270,19 @@ Object.assign(ClockWidget.prototype,{
 		return number;
 	},
 	_calculateSize:function(){
-		var dummyContainer = this._generateNumberInterface(true);
+		dummyContainer = this._generateNumberInterface(true);
 		dummyContainer.addClass("--mm-dummyContainer");
 		this.frontSideRef.append(dummyContainer);
-		var width = dummyContainer.width();
-		console.log("Width: " + width);
-		dummyContainer.remove();
+		var oSelf = this;
+		dummyContainer.ready($.proxy(function(){
+			var height = MainCanvas.pxToRem(dummyContainer.height());
+			var width = MainCanvas.pxToRem(dummyContainer.width());
+
+			dummyContainer.remove();
+			oSelf.setHeight(height);
+			oSelf.setWidth(width);
+
+		},this));
 	},
 	_generateNumberInterface(addDummyValues){
 		var result = $("<span/>", {
@@ -293,7 +306,6 @@ Object.assign(ClockWidget.prototype,{
 		if(this.showSeconds){
 			var secs = $("<span/>", {
 						class: "--mm-clockWidget-seconds",
-						text: "00"
 				}).appendTo(result);
 			if(addDummyValues) secs.text("00");
 
