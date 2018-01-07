@@ -114,8 +114,8 @@ function Widget(options){
 }
 Widget.prototype = {
 	widgetName:"Standard Widget",
-	width:0, //Breite des Widgets in rem
 	widthToHeightRatio:2,
+	maxHeight:undefined,
 	height:0, //Höhe des Widgets in rem
 	domRef:undefined, //jQuery-Objekt des DOM-Objekts
 	frontVisible:true, //zeigt an, ob Widget nach vorne geflipped ist
@@ -140,6 +140,9 @@ Widget.prototype = {
 		this.domRef.height(height + "rem").width(width + "rem");
 		this.setSetting("height", height);
 		this._sizeWasSet();
+	},
+	getWidth:function(){
+		return height * this.widthToHeightRatio;
 	},
 	setWidthToHeightRatio:function(widthToHeightRatio){
 		this.widthToHeightRatio = widthToHeightRatio;
