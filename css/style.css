@@ -70,16 +70,16 @@ body {
   cursor: move;
   /* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
 }
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover {
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover, .--mm-mainCanvas.--mm-editMode .--mm-widget.ui-resizable-resizing {
   outline-color: white;
 }
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover:not(.mm-widget-flipped) .--mm-widget-settingsButton.--mm-visible {
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover:not(.mm-widget-flipped) .--mm-widget-settingsButton.--mm-visible, .--mm-mainCanvas.--mm-editMode .--mm-widget.ui-resizable-resizing:not(.mm-widget-flipped) .--mm-widget-settingsButton.--mm-visible {
   opacity: 1;
   pointer-events: auto;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
-.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-nameTag {
+.--mm-mainCanvas.--mm-editMode .--mm-widget:hover .--mm-widget-nameTag, .--mm-mainCanvas.--mm-editMode .--mm-widget.ui-resizable-resizing .--mm-widget-nameTag {
   opacity: 1;
 }
 .--mm-mainCanvas.--mm-editMode .--mm-widget:active {

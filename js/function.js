@@ -1,11 +1,11 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
-	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, widgetName:"Uhr 1"});
+	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, widgetName:"Clock 1"});
 	canvas.addWidget(widget1);
 
 
-	var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Uhr 2"});
-	canvas.addWidget(widget2);
+	// var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Clock 2"});
+	// canvas.addWidget(widget2);
 
 		// canvas.setEditMode();
 
@@ -59,14 +59,18 @@ MainCanvas.prototype = {
 			//   console.log("stop");
 			// }
 		});
-		this._getWidgetDomArray().draggable("enable");
+		widgetDomArray.draggable("enable");
+		widgetDomArray.resizable({
+			aspectRatio: true
+		});
+		widgetDomArray.resizable("enable");
 	},
 	unsetEditMode:function(){
 		this.editMode = false;
 		this.domRef.removeClass("--mm-editMode");
 		this.flipAllWidgetsToFront();
 		if(this.draggable){
-			this._getWidgetDomArray().draggable("disable");
+			this._getWidgetDomArray().draggable("disable").resizable("disable");
 		}
 	},
 	toggleEditMode:function(){
@@ -122,6 +126,7 @@ Widget.prototype = {
 	frontSideRef:undefined,
 	backSideRef:undefined,
 	settings:{},
+	resizable:true,
 	setHeight:function(height){
 		this.domRef.height(height + "rem");
 		this.setSetting("height", height);

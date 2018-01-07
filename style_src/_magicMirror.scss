@@ -60,7 +60,6 @@ body{
 			background-color: rgba(white,0.3);
 		}
 	}
-
 	&.--mm-editMode{
 		background-color: #3e3e3e;
 		// background-color: rgba(black,0);
@@ -73,7 +72,7 @@ body{
 		.--mm-widget{
 			cursor: move;
 			/* box-shadow: 0 0 5rem 1rem rgba(black, 0.4); */
-			&:hover{
+			&:hover, &.ui-resizable-resizing{
 				outline-color: rgba(white,1);
 				&:not(.mm-widget-flipped) .--mm-widget-settingsButton.--mm-visible{
 					opacity: 1;
@@ -87,10 +86,7 @@ body{
 			&:active{
 				/* transform: scale(1.1); */
 			}
-
 		}
 	}
-
-
 	@import 'widgetBase';
 }
