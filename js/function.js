@@ -1,11 +1,11 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
-	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false});
+	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, widgetName:"Uhr 1"});
 	canvas.addWidget(widget1);
 
 
-	// var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false});
-	// canvas.addWidget(widget2);
+	var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Uhr 2"});
+	canvas.addWidget(widget2);
 
 		// canvas.setEditMode();
 
@@ -150,7 +150,7 @@ Widget.prototype = {
 		this.settings[key] = value;
 	},
 	_readOptions:function(options){
-		if(true);
+		// if(true);
 	},
 	_initializeSettingsButton:function(){
 		this.domRef.append($("<div/>", {
@@ -201,7 +201,9 @@ function ClockWidget(options){
 	Widget.call(this, options);
 	this.domRef.addClass("--mm-clockWidget");
 	this._tick(true);
-	this._calculateSize();
+	this.setHeight(20);
+	this.setWidth(40);
+	// this._calculateSize();
 }
 ClockWidget.prototype = Object.create(Widget.prototype);
 Object.assign(ClockWidget.prototype,{
@@ -226,6 +228,7 @@ Object.assign(ClockWidget.prototype,{
 		if(options){
 			this.showSeconds = !!options.showSeconds;
 			this.hoursLeadingZero = !!options.hoursLeadingZero;
+			if(options.widgetName) this.widgetName = options.widgetName;
 		}
 	},
 	_buildFrontSide: function(){
@@ -268,18 +271,19 @@ Object.assign(ClockWidget.prototype,{
 		return number;
 	},
 	_calculateSize:function(){
-		dummyContainer = this._generateNumberInterface(true);
-		dummyContainer.addClass("--mm-dummyContainer");
-		this.frontSideRef.append(dummyContainer);
-		var oSelf = this;
-		dummyContainer.ready($.proxy(function(){
-			var height = MainCanvas.pxToRem(dummyContainer.height());
-			var width = MainCanvas.pxToRem(dummyContainer.width());
+		//waiting for the whole front side to be ready to calculate size properly
+		this.frontSideRef.ready($.proxy(function(){
+			dummyContainer = this._generateNumberInterface(true);
+			dummyContainer.addClass("--mm-dummyContainer");
+			this.frontSideRef.append(dummyContainer);
+			dummyContainer.ready($.proxy(function(){
+				var height = MainCanvas.pxToRem(dummyContainer.height());
+				var width = MainCanvas.pxToRem(dummyContainer.width());
 
-			dummyContainer.remove();
-			oSelf.setHeight(height);
-			oSelf.setWidth(width);
-
+				dummyContainer.remove();
+				this.setHeight(height);
+				this.setWidth(width);
+			},this));
 		},this));
 	},
 	_generateNumberInterface(addDummyValues){
