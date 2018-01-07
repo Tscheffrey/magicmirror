@@ -198,7 +198,6 @@ body {
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front {
   font-family: 'Advent Pro', sans-serif;
   font-weight: 300;
-  font-size: 20rem;
   text-align: center;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer {

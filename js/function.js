@@ -4,8 +4,8 @@ $(function(){
 	canvas.addWidget(widget1);
 
 
-	// var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Clock 2"});
-	// canvas.addWidget(widget2);
+	var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Clock 2"});
+	canvas.addWidget(widget2);
 
 		// canvas.setEditMode();
 
@@ -111,12 +111,11 @@ MainCanvas.prototype = {
 function Widget(options){
 	this._readOptions(options)
 	this._build();
-	this.setHeight(10);
-	this.setWidth(10);
 }
 Widget.prototype = {
 	widgetName:"Standard Widget",
 	width:0, //Breite des Widgets in rem
+	widthToHeightRatio:2,
 	height:0, //Höhe des Widgets in rem
 	domRef:undefined, //jQuery-Objekt des DOM-Objekts
 	frontVisible:true, //zeigt an, ob Widget nach vorne geflipped ist
@@ -127,13 +126,24 @@ Widget.prototype = {
 	backSideRef:undefined,
 	settings:{},
 	resizable:true,
+	isMovable:true,
+	isResizable:true,
 	setHeight:function(height){
-		this.domRef.height(height + "rem");
+		this.height = height;
+		var width = height * this.widthToHeightRatio;
+		this.domRef.height(height + "rem").width(width + "rem");
 		this.setSetting("height", height);
+		this._sizeWasSet();
 	},
 	setWidth:function(width){
-		this.domRef.width(width + "rem");
-		this.setSetting("width", width);
+		var height = width / this.widthToHeightRatio;
+		this.domRef.height(height + "rem").width(width + "rem");
+		this.setSetting("height", height);
+		this._sizeWasSet();
+	},
+	setWidthToHeightRatio:function(widthToHeightRatio){
+		this.widthToHeightRatio = widthToHeightRatio;
+		this.setHeight(this.height);
 	},
 	flipToFront:function(){
 		this.domRef.removeClass("--mm-widget-flipped");
@@ -189,12 +199,21 @@ Widget.prototype = {
 		this.domRef = $( "<div/>", {
 					class: "--mm-widget"
 				});
+		this.domRef.on( "resize",$.proxy(function( event, ui ) {
+			this.height = MainCanvas.pxToRem(ui.size.height);
+			this._sizeWasSet();
+		},this));
+
 
 		this._buildFrontSide();
 		this._buildBackSide();
 
 		this._initializeNameTag();
 		this._initializeSettingsButton();
+
+	},
+	_sizeWasSet:function(){
+
 	}
 }
 
@@ -206,14 +225,15 @@ function ClockWidget(options){
 	Widget.call(this, options);
 	this.domRef.addClass("--mm-clockWidget");
 	this._tick(true);
-	this.setHeight(20);
-	this.setWidth(40);
-	// this._calculateSize();
+	if(this.showSeconds) this.setWidthToHeightRatio(2.2);
+	else this.setWidthToHeightRatio(1.8);
+	this.setHeight(14);
+
 }
 ClockWidget.prototype = Object.create(Widget.prototype);
 Object.assign(ClockWidget.prototype,{
-	showSeconds:false,
-	hoursLeadingZero:false,
+	showSeconds: false,
+	hoursLeadingZero: false,
 	constructor: ClockWidget,
 	widgetName: "Clock",
 	currentTimer: undefined,
@@ -240,7 +260,6 @@ Object.assign(ClockWidget.prototype,{
 		this.frontSideRef = $("<div/>", {
 					class: "--mm-widget-front",
 			});
-
 		this.domRef.append(this.frontSideRef);
 
 		this.timeContainer = this._generateNumberInterface();
@@ -275,22 +294,6 @@ Object.assign(ClockWidget.prototype,{
 		if(number.length == 1) number = "0" + number;
 		return number;
 	},
-	_calculateSize:function(){
-		//waiting for the whole front side to be ready to calculate size properly
-		this.frontSideRef.ready($.proxy(function(){
-			dummyContainer = this._generateNumberInterface(true);
-			dummyContainer.addClass("--mm-dummyContainer");
-			this.frontSideRef.append(dummyContainer);
-			dummyContainer.ready($.proxy(function(){
-				var height = MainCanvas.pxToRem(dummyContainer.height());
-				var width = MainCanvas.pxToRem(dummyContainer.width());
-
-				dummyContainer.remove();
-				this.setHeight(height);
-				this.setWidth(width);
-			},this));
-		},this));
-	},
 	_generateNumberInterface(addDummyValues){
 		var result = $("<span/>", {
 					class: "--mm-clockWidget-timeContainer",
@@ -315,9 +318,11 @@ Object.assign(ClockWidget.prototype,{
 						class: "--mm-clockWidget-seconds",
 				}).appendTo(result);
 			if(addDummyValues) secs.text("00");
-
 		}
 		return result;
+	},
+	_sizeWasSet:function(){
+		this.frontSideRef.css("font-size",this.height + "rem");
 	}
 
 });
