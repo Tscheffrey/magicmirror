@@ -4,8 +4,8 @@ $(function(){
 	canvas.addWidget(widget1);
 
 
-	var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Clock 2"});
-	canvas.addWidget(widget2);
+	// var widget2 = new ClockWidget({showSeconds:true, hoursLeadingZero:false, widgetName:"Clock 2"});
+	// canvas.addWidget(widget2);
 
 		// canvas.setEditMode();
 
@@ -115,7 +115,6 @@ function Widget(options){
 Widget.prototype = {
 	widgetName:"Standard Widget",
 	widthToHeightRatio:2,
-	maxHeight:undefined,
 	height:0, //Höhe des Widgets in rem
 	domRef:undefined, //jQuery-Objekt des DOM-Objekts
 	frontVisible:true, //zeigt an, ob Widget nach vorne geflipped ist
@@ -230,8 +229,7 @@ function ClockWidget(options){
 	this._tick(true);
 	if(this.showSeconds) this.setWidthToHeightRatio(2.2);
 	else this.setWidthToHeightRatio(1.8);
-	this.setHeight(14);
-
+	this.setHeight(20);
 }
 ClockWidget.prototype = Object.create(Widget.prototype);
 Object.assign(ClockWidget.prototype,{
