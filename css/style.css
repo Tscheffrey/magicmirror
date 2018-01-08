@@ -211,7 +211,6 @@ body {
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front {
   font-family: 'Advent Pro', sans-serif;
-  font-weight: 300;
   text-align: center;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer {
@@ -245,6 +244,26 @@ body {
   font-size: .33em;
   top: -1.33em;
   margin-left: 0.4rem;
+}
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-secondsBar,
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-secondsBarBg {
+  height: 1.1rem;
+}
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-secondsBar {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 0;
+  width: 40%;
+  background-color: white;
+}
+.--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer .--mm-clockWidget-secondsBarBg {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 0;
+  width: 100%;
+  border: 0.2rem solid white;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front .--mm-clockWidget-timeContainer.--mm-clockWidget-dummyContainer {
   display: inline-block;

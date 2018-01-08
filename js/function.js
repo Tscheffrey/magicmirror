@@ -1,6 +1,6 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
-	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, widgetName:"Clock 1"});
+	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, showSecondsBar: true});
 	canvas.addWidget(widget1);
 
 
@@ -239,6 +239,7 @@ Object.assign(ClockWidget.prototype,{
 	widgetName: "Clock",
 	currentTimer: undefined,
 	time: {hours: undefined, minutes: undefined, seconds: undefined},
+	showSecondsBar:undefined,
 	setClockTime:function(args){
 		this.time = args;
 		// if((args.hours) && args.hours != this.time.hours) this.frontSideRef.children(".--mm-clockWidget-hours").text(args.hours.toString());
@@ -253,6 +254,7 @@ Object.assign(ClockWidget.prototype,{
 	_readOptions(options){
 		if(options){
 			this.showSeconds = !!options.showSeconds;
+			this.showSecondsBar = !!options.showSecondsBar;
 			this.hoursLeadingZero = !!options.hoursLeadingZero;
 			if(options.widgetName) this.widgetName = options.widgetName;
 		}
@@ -319,6 +321,16 @@ Object.assign(ClockWidget.prototype,{
 						class: "--mm-clockWidget-seconds",
 				}).appendTo(result);
 			if(addDummyValues) secs.text("00");
+		}
+
+		if(this.showSecondsBar){
+			$("<dic/>", {
+							class: "--mm-clockWidget-secondsBarBg",
+					}).appendTo(result);
+
+			$("<div/>", {
+						class: "--mm-clockWidget-secondsBar",
+				}).appendTo(result);
 		}
 		return result;
 	},
