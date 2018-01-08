@@ -36,6 +36,12 @@
 		> .--mm-widget-back {
 			transform: rotateY(0deg);
 		}
+		.--mm-widget-nameTag{
+			opacity: 1;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: rgba(black,0);
+		}
 	}
 	.--mm-widget-settingsButton{
 		display: block;
@@ -63,12 +69,13 @@
 
 	.--mm-widget-nameTag{
 		@include setBaseFont();
+		text-align: center;
 		display: block;
 		position: absolute;
 		top: 0;
 		left: 0;
 		user-select: none;
-		transition: opacity 400ms ease;
+		transition: opacity 400ms ease, transform 300ms ease, background-color 100ms ease, left 500ms ease;
 		pointer-events: none;
 		user-select: none;
 		padding: 1rem 1.8rem;
@@ -84,6 +91,8 @@
 		opacity: 0;
 		font-size: 2rem;
 		border-bottom-right-radius: 1rem;
+		width: auto;
+		transform: translateX(0);
 	}
 	@import 'clockWidget';
 }

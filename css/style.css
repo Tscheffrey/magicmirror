@@ -29,6 +29,7 @@ body {
   background-color: black;
   z-index: 0;
   color: white;
+  position: fixed;
   -webkit-transition: background-color 500ms ease;
   transition: background-color 500ms ease;
 }
@@ -137,6 +138,13 @@ body {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
 }
+.--mm-mainCanvas .--mm-widget.--mm-widget-flipped .--mm-widget-nameTag {
+  opacity: 1;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0);
+}
 .--mm-mainCanvas .--mm-widget .--mm-widget-settingsButton {
   display: block;
   position: absolute;
@@ -168,6 +176,7 @@ body {
 }
 .--mm-mainCanvas .--mm-widget .--mm-widget-nameTag {
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
   display: block;
   position: absolute;
   top: 0;
@@ -176,8 +185,10 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transition: opacity 400ms ease;
-  transition: opacity 400ms ease;
+  -webkit-transition: opacity 400ms ease, background-color 100ms ease, left 500ms ease, -webkit-transform 300ms ease;
+  transition: opacity 400ms ease, background-color 100ms ease, left 500ms ease, -webkit-transform 300ms ease;
+  transition: opacity 400ms ease, transform 300ms ease, background-color 100ms ease, left 500ms ease;
+  transition: opacity 400ms ease, transform 300ms ease, background-color 100ms ease, left 500ms ease, -webkit-transform 300ms ease;
   pointer-events: none;
   user-select: none;
   padding: 1rem 1.8rem;
@@ -194,6 +205,9 @@ body {
   opacity: 0;
   font-size: 2rem;
   border-bottom-right-radius: 1rem;
+  width: auto;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front {
   font-family: 'Advent Pro', sans-serif;

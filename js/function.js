@@ -180,7 +180,7 @@ Widget.prototype = {
 					class: "--mm-widget-nameTag",
 					text: this.widgetName
 				});
-		this.frontSideRef.append(this.nameTag);
+		this.domRef.append(this.nameTag);
 		// this.domRef.append(this.nameTag);
 	},
 	_buildFrontSide:function(){
@@ -193,7 +193,7 @@ Widget.prototype = {
 	_buildBackSide:function(){
 		this.backSideRef = $("<div/>", {
 							class: "--mm-widget-back",
-							text:"Settings"
+							// text:"Settings"
 						});
 		this.domRef.append(this.backSideRef);
 	},
