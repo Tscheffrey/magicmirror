@@ -1,8 +1,6 @@
 &.--mm-clockWidget{
 	.--mm-widget-front{
 		@include setNumberFont();
-
-		// font-size: 20rem;
 		text-align: center;
 		.--mm-clockWidget-timeContainer{
 			position: absolute;
@@ -12,19 +10,16 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			// margin:5rem;
 			.--mm-clockWidget-hours,
 			.--mm-clockWidget-minutes,
 			.--mm-clockWidget-seconds{
 				position: relative;
 				user-select: none;
 				dispay: block;
-				// text-align: center;
-				// vertical-align: middle;
 				margin: 0;
 				padding:0;
+				font-weight: 300;
 			}
-
 			.--mm-clockWidget-hours{
 
 			}
@@ -32,11 +27,13 @@
 				font-size: .66em;
 				top: -0.33em;
 				margin-left: 0.3rem;
+				font-weight: 400;
 			}
 			.--mm-clockWidget-seconds{
 				font-size: .33em;
 				top: - 1.33em;
 				margin-left: 0.4rem;
+				font-weight: 500;
 			}
 			.--mm-clockWidget-secondsBar,
 			.--mm-clockWidget-secondsBarBg{
