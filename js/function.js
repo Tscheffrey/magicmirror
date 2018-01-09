@@ -1,6 +1,6 @@
 $(function(){
 	var canvas = new MainCanvas($("#magicMirror"));
-	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, showSecondsBar: true});
+	var widget1 = new ClockWidget({showSeconds:false, hoursLeadingZero:false, showSecondsBar: false});
 	canvas.addWidget(widget1);
 
 
@@ -29,10 +29,10 @@ function MainCanvas(domReference){
 MainCanvas.getRemPxRatio = function(){
 	var html = document.getElementsByTagName('html')[0];
 	return parseInt(window.getComputedStyle(html)['fontSize']);
-},
+};
 MainCanvas.pxToRem = function(px){
 			return (parseInt(px) / MainCanvas.getRemPxRatio());
-}
+};
 
 MainCanvas.prototype = {
 	domRef:undefined,
@@ -251,7 +251,7 @@ Object.assign(ClockWidget.prototype,{
 		this.timeContainer.children(".--mm-clockWidget-seconds").text(this._getSecondsFormatted());
 
 	},
-	_readOptions(options){
+	_readOptions:function(options){
 		if(options){
 			this.showSeconds = !!options.showSeconds;
 			this.showSecondsBar = !!options.showSecondsBar;
@@ -297,7 +297,7 @@ Object.assign(ClockWidget.prototype,{
 		if(number.length == 1) number = "0" + number;
 		return number;
 	},
-	_generateNumberInterface(addDummyValues){
+	_generateNumberInterface:function(addDummyValues){
 		var result = $("<span/>", {
 					class: "--mm-clockWidget-timeContainer",
 			});
