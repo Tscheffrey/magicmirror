@@ -130,21 +130,6 @@ body {
           transform: rotateY(180deg);
   background: #121212;
 }
-.--mm-mainCanvas .--mm-widget.--mm-widget-flipped > .--mm-widget-front {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
-}
-.--mm-mainCanvas .--mm-widget.--mm-widget-flipped > .--mm-widget-back {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
-}
-.--mm-mainCanvas .--mm-widget.--mm-widget-flipped .--mm-widget-nameTag {
-  opacity: 1;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0);
-}
 .--mm-mainCanvas .--mm-widget .--mm-widget-settingsButton {
   display: block;
   position: absolute;
@@ -185,10 +170,10 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  -webkit-transition: opacity 400ms ease, background-color 100ms ease, left 500ms ease, -webkit-transform 300ms ease;
-  transition: opacity 400ms ease, background-color 100ms ease, left 500ms ease, -webkit-transform 300ms ease;
-  transition: opacity 400ms ease, transform 300ms ease, background-color 100ms ease, left 500ms ease;
-  transition: opacity 400ms ease, transform 300ms ease, background-color 100ms ease, left 500ms ease, -webkit-transform 300ms ease;
+  -webkit-transition: opacity 400ms ease, background-color 400ms ease, left 500ms ease, -webkit-transform 300ms ease;
+  transition: opacity 400ms ease, background-color 400ms ease, left 500ms ease, -webkit-transform 300ms ease;
+  transition: opacity 400ms ease, transform 300ms ease, background-color 400ms ease, left 500ms ease;
+  transition: opacity 400ms ease, transform 300ms ease, background-color 400ms ease, left 500ms ease, -webkit-transform 300ms ease;
   pointer-events: none;
   user-select: none;
   padding: 1rem 1.8rem;
@@ -208,6 +193,21 @@ body {
   width: auto;
   -webkit-transform: translateX(0);
           transform: translateX(0);
+}
+.--mm-mainCanvas .--mm-widget.--mm-widget-flipped > .--mm-widget-front {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+.--mm-mainCanvas .--mm-widget.--mm-widget-flipped > .--mm-widget-back {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+.--mm-mainCanvas .--mm-widget.--mm-widget-flipped .--mm-widget-nameTag {
+  opacity: 1;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0);
 }
 .--mm-mainCanvas .--mm-widget.--mm-clockWidget .--mm-widget-front {
   font-family: 'Advent Pro', sans-serif;

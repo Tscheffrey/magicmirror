@@ -29,20 +29,6 @@
 		transform: rotateY(180deg);
 		background: #121212;
 	}
-	&.--mm-widget-flipped{
-		> .--mm-widget-front {
-			transform: rotateY(-180deg);
-		}
-		> .--mm-widget-back {
-			transform: rotateY(0deg);
-		}
-		.--mm-widget-nameTag{
-			opacity: 1;
-			left: 50%;
-			transform: translateX(-50%);
-			background-color: rgba(black,0);
-		}
-	}
 	.--mm-widget-settingsButton{
 		display: block;
 		position: absolute;
@@ -66,7 +52,6 @@
 		pointer-events: none;
 		transform: scale(0.1);
 	}
-
 	.--mm-widget-nameTag{
 		@include setBaseFont();
 		text-align: center;
@@ -75,7 +60,7 @@
 		top: 0;
 		left: 0;
 		user-select: none;
-		transition: opacity 400ms ease, transform 300ms ease, background-color 100ms ease, left 500ms ease;
+		transition: opacity 400ms ease, transform 300ms ease, background-color 400ms ease, left 500ms ease;
 		pointer-events: none;
 		user-select: none;
 		padding: 1rem 1.8rem;
@@ -93,6 +78,20 @@
 		border-bottom-right-radius: 1rem;
 		width: auto;
 		transform: translateX(0);
+	}
+	&.--mm-widget-flipped{
+		> .--mm-widget-front {
+			transform: rotateY(-180deg);
+		}
+		> .--mm-widget-back {
+			transform: rotateY(0deg);
+		}
+		.--mm-widget-nameTag{
+			opacity: 1;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: rgba(black,0);
+		}
 	}
 	@import 'clockWidget';
 }
