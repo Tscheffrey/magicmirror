@@ -4,12 +4,12 @@
 <head>
 	<title>Magic Mirror [beta]</title>
 	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-<!--
-	<script data-main="lib/function" src="./lib/require.js"></script> -->
+
+	<script data-main="lib/function" src="./lib/require.js"></script>
 
 	<script type="text/javascript" src="./lib/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="./lib/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="./lib/function.js"></script>
+	<!-- <script type="text/javascript" src="./lib/function.js"></script> -->
 
 <!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -22,9 +22,11 @@
 
 
 	<script>
-	alert("Bridge: ", window.Bridge)
 	if(window && window.process && window.process.type) console.log("App is running in electron")
 	else console.log("App is running as a Website")
+
+	alert(window.Bridge.test)
+
 	// require('./renderer.js')
 	</script>
 </body>
