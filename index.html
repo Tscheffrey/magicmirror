@@ -22,12 +22,12 @@
 
 
 	<script>
-	if(window && window.process && window.process.type) console.log("App is running in electron")
-	else console.log("App is running as a Website")
+	window.isElectron = function() {  return 'Bridge' in window; };
 
-	alert(window.Bridge.test)
+	if(window.isElectron())  console.log = window.consoleLog()
 
-	// require('./renderer.js')
+	console.log("Dies ist ein Console log von weit weg")
+
 	</script>
 </body>
 
