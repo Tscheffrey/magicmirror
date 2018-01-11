@@ -18,6 +18,8 @@
 
 
 	<script>
+	if(window.runningInElectron) console.log("App is running in electron")
+	else console.log("App is running as a Website")
 	// require('./renderer.js')
 	</script>
 </body>
