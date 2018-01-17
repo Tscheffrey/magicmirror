@@ -1,0 +1,11 @@
+{
+  "baseWidget": {
+    "path": "base"
+  },
+  "widgets": [
+    {
+      "path": "clockWidget",
+      "displayName": "Clock Widget"
+    }
+  ]
+}
